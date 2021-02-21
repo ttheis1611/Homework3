@@ -1,7 +1,7 @@
 //Assignment 3 Code//
 // User input variables//
 var generateBtn = document.querySelector("#generate");
-var length;
+var input;
 var upperCase;
 var lowerCase;
 var numbers;
@@ -66,7 +66,7 @@ var lowercaseLettersArray = [
 	"z",
 ];
 // Numbers Array//
-var numbersArray = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
+var numbersArray = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 //Special Char Array//
 var specialCharactersArray = [
 	"!",
@@ -90,20 +90,24 @@ var specialCharactersArray = [
 	"@",
 ];
 
-//Propmt User for length of password 8-128//
+//Prompt User for length of password 8-128//
+//Validate user input//
 function passwordLength() {
-	length = prompt(
+	input = parseInt (prompt(
 		"How many characters would you like in your password? Choose a number between 8 and 128."
-	);
-	if (length < 8 || length > 128) {
+	));
+	if (isNaN(input) || input < 8 || input > 128) {
+		// while (isNaN(length) || length < 8 || length > 128) length = Number
 		//Validate user input//
-		prompt("Number must be between 8 and 128.");
+	
+		//prompt user to select a number betwee 8-128, if not valid entery call function again//
+		alert("Sorry, need another input, OK?");
 		passwordLength();
 	}
 	//prompt user to select a number betwee 8-128, if not valid entery call function again//
 	//and store answer as numberLength//
-	console.log(length);
-	return length;
+	console.log(input);
+	return input;
 }
 //prompt user to select upper, lower, special, number for password//
 function passwordOptions() {
@@ -122,12 +126,13 @@ function passwordOptions() {
 	console.log("Include Special Characters", specialChar);
 	// All False//
 	if (
-		lowerCase === false &&
-		upperCase === false &&
-		numbers === false &&
-		specialChar === false
+		lowerCase === !true &&
+		upperCase === !true &&
+		numbers === !true &&
+		specialChar === !true
 	) {
 		alert("Need to choose a critera to create password!");
+		console.log (passwordOptions);
 		passwordOptions();
 
 		// Determine what Arrays to include//
@@ -139,8 +144,8 @@ function passwordOptions() {
 		specialChar === true
 	) {
 		var options = lowercaseLettersArray.concat(
-			uppercaseLettersArray,
 			numbersArray,
+			uppercaseLettersArray,
 			specialCharactersArray
 		);
 		return options;
@@ -286,15 +291,17 @@ function passwordOptions() {
 function generatePassword() {
 	var length = passwordLength();
 	console.log(length);
-	var options = passwordOptions();
-	console.log(options);
+	var selOpt = passwordOptions();
+	console.log(selOpt);
 	var password = [];
 	// password  is length
 	for (var i = 0; i < length; i++) {
-		var pickOptions = options[Math.floor(Math.random() * options.length)];
+		var pickOptions = selOpt[Math.floor(Math.random() * selOpt.length)];
+		console.log(pickOptions);
 		password.push(pickOptions);
 	}
 	//return pw without commas//
+	console.log(password);
 	return password.join("");
 }
 

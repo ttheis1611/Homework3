@@ -157,6 +157,7 @@ function generatePassword() {
 	var password = [];
 	// password  is length
 	for (var i = 0; i < length; i++) {
+		// select random char from arrays
 		var pickOptions = selOpt[Math.floor(Math.random() * selOpt.length)];
 		console.log(pickOptions);
 		password.push(pickOptions);

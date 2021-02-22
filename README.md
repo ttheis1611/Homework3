@@ -8,6 +8,7 @@
 ## Website UI
 
     Refresh page then allows on button click user to answer questions to generate password based on input of length between 8-128 characters. Allows user to choose between Lowercase, Uppercase, Numbers and Special characters to be included into the password randomly then displayed to the user.
+    If all answers to what to add to the password generator, the user will need to refresh page and start again.
 
 ## Contributing
 Kelly Gowing, Inez Escandon and others with very helpful tips allowe me to get this done.

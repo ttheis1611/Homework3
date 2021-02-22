@@ -106,12 +106,13 @@ function passwordLength() {
 	}
 	//prompt user to select a number betwee 8-128, if not valid entery call function again//
 	//and store answer as numberLength//
-	console.log(input);
+	//console.log(input);
 	return input;
 }
 //prompt user to select upper, lower, special, number for password//
 function passwordOptions() {
-	//serial of IF statement and return user if invalid, proceed after valid selections//
+	var options = [];
+	//series of IF statements and return user if invalid, proceed after valid selections//
 	lowerCase = confirm(
 		"Do you want the password to have LOWER case characters?"
 	);
@@ -124,167 +125,27 @@ function passwordOptions() {
 	console.log("Include numbers", numbers);
 	specialChar = confirm("Do you want the password to have SPECIAL characters?");
 	console.log("Include Special Characters", specialChar);
-	// All False//
-	if (
-		lowerCase === !true &&
-		upperCase === !true &&
-		numbers === !true &&
-		specialChar === !true
-	) {
-		alert("Need to choose a critera to create password!");
-		console.log (passwordOptions);
-		passwordOptions();
 
-		// Determine what Arrays to include//
-		// All True//
-	} else if (
-		lowerCase === true &&
-		upperCase === true &&
-		numbers === true &&
-		specialChar === true
-	) {
-		var options = lowercaseLettersArray.concat(
-			numbersArray,
-			uppercaseLettersArray,
-			specialCharactersArray
-		);
-		return options;
-
-		// 3 True //
-	} else if (
-		lowerCase === false &&
-		upperCase === true &&
-		numbers === true &&
-		specialChar === true
-	) {
-		var options = uppercaseLettersArray.concat(
-			numbersArray,
-			specialCharactersArray
-		);
-		return options;
-	} else if (
-		lowerCase === true &&
-		upperCase === false &&
-		numbers === true &&
-		specialChar === true
-	) {
-		var options = lowercaseLettersArray.concat(
-			numbersArray,
-			specialCharactersArray
-		);
-		return options;
-	} else if (
-		lowerCase === true &&
-		upperCase === true &&
-		numbers === false &&
-		specialChar === true
-	) {
-		var options = lowercaseLettersArray.concat(
-			uppercaseLettersArray,
-			specialCharactersArray
-		);
-		return options;
-	} else if (
-		lowerCase === true &&
-		upperCase === true &&
-		numbers === true &&
-		specialChar === false
-	) {
-		var options = lowercaseLettersArray.concat(
-			uppercaseLettersArray, numbers);
-		return options;
-		// 2 True//
-	} else if (
-		lowerCase === true &&
-		upperCase === true &&
-		numbers === false &&
-		specialChar === false
-	) {
-		var options = lowercaseLettersArray.concat(
-			uppercaseLettersArray);
-		return options;
-	} else if (
-		lowerCase === true &&
-		upperCase === false &&
-		numbers === false &&
-		specialChar === true
-	) {
-		var options = lowercaseLettersArray.concat(
-			specialCharactersArray);
-		return options;
-	} else if (
-		lowerCase === false &&
-		upperCase === false &&
-		numbers === true &&
-		specialChar === true
-	) {
-		var options = numbersArray.concat(
-			specialCharactersArray);
-		return options;
-	} else if (
-		lowerCase === false &&
-		upperCase === true &&
-		numbers === true &&
-		specialChar === false
-	) {
-		var options = uppercaseLettersArray.concat(
-			numbersArray);
-		return options;
-	} else if (
-		lowerCase === false &&
-		upperCase === true &&
-		numbers === false &&
-		specialChar === true
-	) {
-		var options = uppercaseLettersArray.concat(
-			specialCharactersArray);
-		return options;
-	} else if (
-		lowerCase === true &&
-		upperCase === false &&
-		numbers === true &&
-		specialChar === false
-	) {
-		var options = lowercaseLettersArray.concat(
-			numbersArray);
-		return options;
-		// 	// 1 True//
-	} else if (
-		lowerCase === true &&
-		upperCase === false &&
-		numbers === false &&
-		specialChar === false
-	) {
-		var options = lowercaseLettersArray;
-		return options;
-	} else if (
-		lowerCase === false &&
-		upperCase === true &&
-		numbers === false &&
-		specialChar === false
-	) {
-		var options = uppercaseLettersArray;
-		return options;
-	} else if (
-		lowerCase === false &&
-		upperCase === false &&
-		numbers === true &&
-		specialChar === false
-	) {
-		var options = numbersArray;
-		return options;
-	} else if (
-		lowerCase === false &&
-		upperCase === false &&
-		numbers === false &&
-		specialChar === true
-	) {
-		var options = specialCharactersArray;
-		return options;
-
-		//Use an object to help build password set of characters//
+	// Reviewed from Manuel Ramirez (MR)
+	if (lowerCase){
+		options = options.concat(lowercaseLettersArray);
 	}
-	return options;
+
+	if (upperCase){
+		options = options.concat(uppercaseLettersArray);
+	}
+
+	if (numbers){
+		options = options.concat(numbersArray);
+	}
+
+	if (specialChar){
+		options = options.concat(specialCharactersArray);
+	// end from MR above
+	}
+	console.log (options);
+	return options; 
+
 }
 
 //return randomly generated password//
@@ -305,13 +166,12 @@ function generatePassword() {
 	return password.join("");
 }
 
-// }
-// // Write password to the #password input//
+// Write password to the #password input//
 function writePassword() {
 	var password = generatePassword();
 	var passwordText = document.querySelector("#password");
 	passwordText.value = password;
 }
-// // function calls
+
 // // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);

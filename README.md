@@ -9,7 +9,7 @@
 
     Refresh page then allows on button click user to answer questions to generate password based on input of length between 8-128 characters. Allows user to choose between Lowercase, Uppercase, Numbers and Special characters to be included into the password randomly then displayed to the user.
     If all answers to what to add to the password generator, the user will need to refresh page and start again.
-    The page is located https://ttheis1611.github.io/Homework3/
+    The page is located https://ttheis1611.github.io/PassGenWK3/
     
 
 ## Contributing
